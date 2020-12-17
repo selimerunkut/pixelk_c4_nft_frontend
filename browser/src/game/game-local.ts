@@ -32,13 +32,27 @@ export class GameLocal extends GameBase {
     }
 
     if (statusboxBodyGame) {
-      statusboxBodyGame.textContent = 'Wating for move'
+      statusboxBodyGame.textContent = 'Waiting for move'
+      if (
+        (document.getElementById('imgP1').src == undefined) || (document.getElementById('imgP1').src == '') || 
+        (document.getElementById('imgP2').src == undefined) || (document.getElementById('imgP2').src == '')
+      )
+      {
+        statusboxBodyGame.textContent = 'Waiting for image'
+      }
     }
 
     if (statusboxBodyPlayer) {
       // `currentPlayerId` is not updated yet
       statusboxBodyPlayer.textContent =
         this.currentPlayerId === 0 ? `Player 1 🔴` : `Player 2 🔵`
+      if (
+        (document.getElementById('imgP1').src == undefined) || (document.getElementById('imgP1').src == '') || 
+        (document.getElementById('imgP2').src == undefined) || (document.getElementById('imgP2').src == '')
+      )
+      {
+        statusboxBodyPlayer.textContent = ``;
+      }
     }
   }
   afterMove() {
@@ -78,7 +92,7 @@ export function initGameLocal(
   GameLocalCosntructor: typeof GameLocal,
   secondPlayer: PlayerHuman | PlayerAi
 ) {
-  const canvas = document.querySelector('canvas')
+  const canvas = document.getElementById('canvasBoard')
   if (!canvas) {
     console.error('Canvas DOM is null')
     return
@@ -91,30 +105,50 @@ export function initGameLocal(
 
   game.start()
   if (statusboxBodyGame) {
-    statusboxBodyGame.textContent = 'Wating for move'
+    statusboxBodyGame.textContent = 'Waiting for move';
+    if (
+      (document.getElementById('imgP1').src == undefined) || (document.getElementById('imgP1').src == '') || 
+      (document.getElementById('imgP2').src == undefined) || (document.getElementById('imgP2').src == '')
+    )
+    {
+      statusboxBodyGame.textContent = 'Waiting for image';
+    }
   }
 
   if (statusboxBodyPlayer) {
-    statusboxBodyPlayer.textContent = `Player 1 🔴`
+    statusboxBodyPlayer.textContent = `Player 1 🔴`;
+    if (
+      (document.getElementById('imgP1').src == undefined) || (document.getElementById('imgP1').src == '') || 
+      (document.getElementById('imgP2').src == undefined) || (document.getElementById('imgP2').src == '')
+    )
+    {
+      statusboxBodyPlayer.textContent = ``;
+    }
   }
 
   canvas.addEventListener('click', async (event: MouseEvent) => {
-    if (game.isGameWon) {
-      game.reset()
-      await animationFrame()
-      game.start()
-    } else {
-      const rect = canvas.getBoundingClientRect()
-      const x = event.clientX - rect.left
-      const y = event.clientY - rect.top
-      const column = getColumnFromCoord({ x: x, y: y })
-      if (game.currentPlayerId === 0) {
-        firstPlayer.doAction(column)
-      } else if (
-        game.currentPlayerId === 1 &&
-        secondPlayer instanceof PlayerHuman
-      ) {
-        secondPlayer.doAction(column)
+    if (
+      (document.getElementById('imgP1').src != undefined) && (document.getElementById('imgP1').src != '') &&
+      (document.getElementById('imgP2').src != undefined) && (document.getElementById('imgP2').src != '')
+    )
+    {
+      if (game.isGameWon) {
+        game.reset()
+        await animationFrame()
+        game.start()
+      } else {
+        const rect = canvas.getBoundingClientRect()
+        const x = event.clientX - rect.left
+        const y = event.clientY - rect.top
+        const column = getColumnFromCoord({ x: x, y: y })
+        if (game.currentPlayerId === 0) {
+          firstPlayer.doAction(column)
+        } else if (
+          game.currentPlayerId === 1 &&
+          secondPlayer instanceof PlayerHuman
+        ) {
+          secondPlayer.doAction(column)
+        }
       }
     }
   })
