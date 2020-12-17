@@ -2,15 +2,38 @@ import { Board } from './index'
 
 export function drawCircle(
   context: CanvasRenderingContext2D,
-  { x = 0, y = 0, r = 0, fillStyle = '', strokeStyle = '' }
+  { x = 0, y = 0, r = 0, player = 0}
 ) {
   context.save()
-  context.fillStyle = fillStyle
-  context.strokeStyle = strokeStyle
-  context.beginPath()
-  context.arc(x, y, r, 0, 2 * Math.PI, false)
-  context.fill()
-  context.restore()
+  if (!player)
+  {
+    context.fillStyle = 'transparent'
+    context.beginPath();
+    context.arc(x, y, r, 0, 2 * Math.PI, false);
+    context.fill();
+  }
+  else
+  {
+    var img = document.getElementById('imgP' + player);
+    var width = r * 2;
+    var height = r * 2;
+    x -= width / 2;
+    y -= height / 2;
+    context.beginPath();
+    context.moveTo(x + r, y);
+    context.lineTo(x + width - r, y);
+    context.quadraticCurveTo(x + width, y, x + width, y + r);
+    context.lineTo(x + width, y + height - r);
+    context.quadraticCurveTo(x + width, y + height, x + width - r, y + height);
+    context.lineTo(x + r, y + height);
+    context.quadraticCurveTo(x, y + height, x, y + height - r);
+    context.lineTo(x, y + r);
+    context.quadraticCurveTo(x, y, x + r, y);
+    context.closePath();
+    context.clip();
+    context.drawImage(img, x, y, width, height);
+  }
+  context.restore();
 }
 /**
  * @see http://stackoverflow.com/a/11770000/917957
