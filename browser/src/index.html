@@ -12,13 +12,12 @@
     </header>
     <img id="imgP1" width="49.2" height="73.2">
     <img id="imgP2" width="49.2" height="73.2">
-    <input type="file" id="inputP1" width="48" height="48" onchange="
-      document.getElementById('imgP1').src = window.URL.createObjectURL(document.getElementById('inputP1').files[0]);
-    ">
+    <button id="btn_P1">Player 1 Image</button>
+    <input type="file" id="inputP1" width="48" height="48" style="display: none;">
     <br>
-    <input type="file" id="inputP2" width="48" height="48" onchange="
-      document.getElementById('imgP2').src = window.URL.createObjectURL(document.getElementById('inputP2').files[0]);
-    ">
+    <button id="btn_P2">Player 2 Image</button>
+    <input type="file" id="inputP2" width="48" height="48" style="display: none;">
+    
     <section class="section">
       <div class="section-message"></div>
       <canvas id="canvasBoard" class="section-canvas"></canvas>
