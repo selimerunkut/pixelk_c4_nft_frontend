@@ -71,13 +71,15 @@ export class Board extends BoardBase {
       clearCanvas(this)
       drawCircle(this.context, {
         x:
-          3 * BoardBase.PIECE_RADIUS * column +
+          3 * BoardBase.PIECE_RADIUS * x +
           BoardBase.MASK_X_BEGIN +
           2 * BoardBase.PIECE_RADIUS,
-        y: currentY + BoardBase.MASK_Y_BEGIN + 2 * BoardBase.PIECE_RADIUS,
+        y:
+          3 * BoardBase.PIECE_RADIUS * y +
+          BoardBase.MASK_Y_BEGIN +
+          2 * BoardBase.PIECE_RADIUS,
         r: BoardBase.PIECE_RADIUS,
-        fillStyle: fillStyle,
-        strokeStyle: BoardBase.PIECE_STROKE_STYLE,
+        player: this.getPlayer(this.map[y][x]),
       })
       this.render()
       currentY += BoardBase.PIECE_RADIUS
