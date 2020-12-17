@@ -158,14 +158,14 @@ export class BoardBase {
     return BoardPiece.EMPTY
   }
 
-  protected getPlayerColor(boardPiece: BoardPiece): string {
+  protected getPlayer(boardPiece: BoardPiece): Number {
     switch (boardPiece) {
       case BoardPiece.PLAYER_1:
-        return BoardBase.PLAYER_1_COLOR
+        return 1
       case BoardPiece.PLAYER_2:
-        return BoardBase.PLAYER_2_COLOR
+        return 2
       default:
-        return 'transparent'
+        return 0
     }
   }
 }
