@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8" />
@@ -10,9 +10,18 @@
     <header class="header">
       <h1>c4 - Connect Four</h1>
     </header>
+    <img id="imgP1" width="49.2" height="73.2">
+    <img id="imgP2" width="49.2" height="73.2">
+    <input type="file" id="inputP1" width="48" height="48" onchange="
+      document.getElementById('imgP1').src = window.URL.createObjectURL(document.getElementById('inputP1').files[0]);
+    ">
+    <br>
+    <input type="file" id="inputP2" width="48" height="48" onchange="
+      document.getElementById('imgP2').src = window.URL.createObjectURL(document.getElementById('inputP2').files[0]);
+    ">
     <section class="section">
       <div class="section-message"></div>
-      <canvas class="section-canvas"></canvas>
+      <canvas id="canvasBoard" class="section-canvas"></canvas>
     </section>
 
     <div class="mode">
