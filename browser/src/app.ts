@@ -4,6 +4,11 @@ import * as Game from './game'
 import { Board } from './board'
 import './style.css'
 
+document.getElementById('btn_P1').addEventListener('click', () => {document.getElementById('inputP1').click();})
+document.getElementById('btn_P2').addEventListener('click', () => {document.getElementById('inputP2').click();})
+document.getElementById('inputP1').addEventListener('change', () => {document.getElementById('imgP1').src = window.URL.createObjectURL(document.getElementById('inputP1').files[0]);})
+document.getElementById('inputP2').addEventListener('change', () => {document.getElementById('imgP2').src = window.URL.createObjectURL(document.getElementById('inputP2').files[0]);})
+
 document.addEventListener('DOMContentLoaded', () => {
   const canvas = document.querySelector('canvas')
   if (!canvas) {
