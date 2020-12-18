@@ -22,7 +22,7 @@ export class GameLocal extends GameBase {
   beforeMoveApplied() {
     if (statusboxBodyGame) {
       statusboxBodyGame.textContent = `Dropping ${
-        this.currentPlayerId === 0 ? '🔴' : '🔵'
+        this.currentPlayerId === 0 ? 'Player 1' : 'Player 2'
       } disc`
     }
   }
@@ -45,7 +45,7 @@ export class GameLocal extends GameBase {
     if (statusboxBodyPlayer) {
       // `currentPlayerId` is not updated yet
       statusboxBodyPlayer.textContent =
-        this.currentPlayerId === 0 ? `Player 1 🔴` : `Player 2 🔵`
+        this.currentPlayerId === 0 ? `Player 1` : `Player 2`
       if (
         (document.getElementById('imgP1').src == undefined) || (document.getElementById('imgP1').src == '') || 
         (document.getElementById('imgP2').src == undefined) || (document.getElementById('imgP2').src == '')
@@ -83,11 +83,32 @@ export class GameLocal extends GameBase {
         winnerBoardPiece === BoardPiece.DRAW
           ? `It's a draw`
           : `Player ${
-              winnerBoardPiece === BoardPiece.PLAYER_1 ? '1 🔴' : '2 🔵'
+              winnerBoardPiece === BoardPiece.PLAYER_1 ? '1' : '2'
             } wins`
     }
   }
 }
+
+function inputImage(game, player)
+{
+  var supportedImages = ["image/jpeg", "image/png", "image/gif", "image/jpg", "image/ico"];
+  if (supportedImages.indexOf(document.getElementById('inputP' + player).files[0].type) != -1)
+  {
+    document.getElementById('imgP' + player).src = window.URL.createObjectURL(document.getElementById('inputP' + player).files[0]);
+    if (
+      (document.getElementById('imgP1').src != undefined) && (document.getElementById('imgP1').src != '') &&
+      (document.getElementById('imgP2').src != undefined) && (document.getElementById('imgP2').src != '')
+    )
+    {
+      var statusboxBodyGame = document.querySelector('.statusbox-body-game');
+        statusboxBodyGame.textContent = 'Waiting for move';
+        
+        var statusboxBodyPlayer = document.querySelector('.statusbox-body-player')
+        statusboxBodyPlayer.textContent = 'Player ' + (game.currentPlayerId + 1);
+    }
+  }
+}
+
 export function initGameLocal(
   GameLocalCosntructor: typeof GameLocal,
   secondPlayer: PlayerHuman | PlayerAi
@@ -116,7 +137,7 @@ export function initGameLocal(
   }
 
   if (statusboxBodyPlayer) {
-    statusboxBodyPlayer.textContent = `Player 1 🔴`;
+    statusboxBodyPlayer.textContent = `Player 1`;
     if (
       (document.getElementById('imgP1').src == undefined) || (document.getElementById('imgP1').src == '') || 
       (document.getElementById('imgP2').src == undefined) || (document.getElementById('imgP2').src == '')
@@ -125,6 +146,13 @@ export function initGameLocal(
       statusboxBodyPlayer.textContent = ``;
     }
   }
+
+  document.getElementById('inputP1').addEventListener('change', () => {
+    inputImage(game, 1);
+  })
+  document.getElementById('inputP2').addEventListener('change', () => {
+    inputImage(game, 2);
+  })
 
   canvas.addEventListener('click', async (event: MouseEvent) => {
     if (
