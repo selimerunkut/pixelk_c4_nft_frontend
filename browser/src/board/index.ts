@@ -65,7 +65,6 @@ export class Board extends BoardBase {
     column: number,
     boardPiece: BoardPiece
   ): Promise<void> {
-    const fillStyle = this.getPlayerColor(boardPiece)
     let currentY = 0
     const doAnimation = async () => {
       clearCanvas(this)
@@ -104,7 +103,7 @@ export class Board extends BoardBase {
             BoardBase.MASK_Y_BEGIN +
             2 * BoardBase.PIECE_RADIUS,
           r: BoardBase.PIECE_RADIUS,
-          fillStyle: this.getPlayerColor(this.map[y][x]),
+          fillStyle: this.getPlayer(this.map[y][x]),
           strokeStyle: BoardBase.PIECE_STROKE_STYLE,
         })
       }
