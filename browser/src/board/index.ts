@@ -69,14 +69,8 @@ export class Board extends BoardBase {
     const doAnimation = async () => {
       clearCanvas(this)
       drawCircle(this.context, {
-        x:
-          3 * BoardBase.PIECE_RADIUS * x +
-          BoardBase.MASK_X_BEGIN +
-          2 * BoardBase.PIECE_RADIUS,
-        y:
-          3 * BoardBase.PIECE_RADIUS * y +
-          BoardBase.MASK_Y_BEGIN +
-          2 * BoardBase.PIECE_RADIUS,
+        x:3 * BoardBase.PIECE_RADIUS * x + BoardBase.MASK_X_BEGIN + 2 * BoardBase.PIECE_RADIUS,
+        y:3 * BoardBase.PIECE_RADIUS * y + BoardBase.MASK_Y_BEGIN + 2 * BoardBase.PIECE_RADIUS,
         r: BoardBase.PIECE_RADIUS,
         player: this.getPlayer(this.map[y][x]),
       })
@@ -94,14 +88,8 @@ export class Board extends BoardBase {
     for (let y = 0; y < BoardBase.ROWS; y++) {
       for (let x = 0; x < BoardBase.COLUMNS; x++) {
         drawCircle(this.context, {
-          x:
-            3 * BoardBase.PIECE_RADIUS * x +
-            BoardBase.MASK_X_BEGIN +
-            2 * BoardBase.PIECE_RADIUS,
-          y:
-            3 * BoardBase.PIECE_RADIUS * y +
-            BoardBase.MASK_Y_BEGIN +
-            2 * BoardBase.PIECE_RADIUS,
+          x:3 * BoardBase.PIECE_RADIUS * x + BoardBase.MASK_X_BEGIN + 2 * BoardBase.PIECE_RADIUS,
+          y:3 * BoardBase.PIECE_RADIUS * y + BoardBase.MASK_Y_BEGIN + 2 * BoardBase.PIECE_RADIUS,
           r: BoardBase.PIECE_RADIUS,
           fillStyle: this.getPlayer(this.map[y][x]),
           strokeStyle: BoardBase.PIECE_STROKE_STYLE,
