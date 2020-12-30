@@ -41,9 +41,7 @@
     "start-server": "yarn workspace @kenrick95/c4-server start-dev"
   },
   "dependencies": {
-    "concurrently": "^5.1.0",
-    "ts-node": "^3.3.0",
-    "typescript": "^2.4.2"
+    "concurrently": "^5.1.0"    
   },
   "devDependencies": {
     "concurrently": "^5.1.0"
