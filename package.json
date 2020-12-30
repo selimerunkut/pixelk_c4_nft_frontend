@@ -40,6 +40,9 @@
     "start-browser": "yarn workspace @kenrick95/c4-browser start",
     "start-server": "yarn workspace @kenrick95/c4-server start-dev"
   },
+  "dependencies": {
+    "concurrently": "^5.1.0"
+  },
   "devDependencies": {
     "concurrently": "^5.1.0"
   }
