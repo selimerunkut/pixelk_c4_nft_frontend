@@ -72,7 +72,7 @@ export class Board extends BoardBase {
         "x":3 * BoardBase.PIECE_RADIUS * x + BoardBase.MASK_X_BEGIN + 2 * BoardBase.PIECE_RADIUS,
         "y":3 * BoardBase.PIECE_RADIUS * y + BoardBase.MASK_Y_BEGIN + 2 * BoardBase.PIECE_RADIUS,
         "r": BoardBase.PIECE_RADIUS,
-        "player": this.getPlayer(this.map[y][x]),
+       // "player": this.getPlayer(this.map[y][x]),
       })
       this.render()
       currentY += BoardBase.PIECE_RADIUS
@@ -91,7 +91,7 @@ export class Board extends BoardBase {
           "x":3 * BoardBase.PIECE_RADIUS * x + BoardBase.MASK_X_BEGIN + 2 * BoardBase.PIECE_RADIUS,
           "y":3 * BoardBase.PIECE_RADIUS * y + BoardBase.MASK_Y_BEGIN + 2 * BoardBase.PIECE_RADIUS,
           "r": BoardBase.PIECE_RADIUS,
-          "player": this.getPlayer(this.map[y][x]),
+          //"player": this.getPlayer(this.map[y][x]),
         })
       }
     }
