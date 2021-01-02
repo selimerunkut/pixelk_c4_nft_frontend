@@ -26,7 +26,7 @@ const C4_SERVER_ENDPOINT =
   process.env.NODE_ENV === 'production'
     ? process.env.C4_SERVER_ENDPOINT
       ? process.env.C4_SERVER_ENDPOINT
-      : `wss://pixelk-connect4.herokuapp.com//`
+      : `wss://connect4-backend.herokuapp.com///`
     : `ws://${location.hostname}:8080`
 
 export class GameOnline2p extends GameBase {
