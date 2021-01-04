@@ -31,7 +31,7 @@ export function drawCircle(
     context.quadraticCurveTo(x, y, x + r, y);
     context.closePath();
     context.clip();
-    context.drawImage(img, x, y, width, height);
+    //context.drawImage(img, x, y, width, height);
   }
   context.restore();
 }
