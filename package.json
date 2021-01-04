@@ -34,7 +34,7 @@
     "clean": "shx rm -rf dist/"
   },
   "dependencies": {
-    "@kenrick95/c4": "4.0.0",
+    "@kenrick95/c4": "^4.0.0",
     "es6-promise": "^4.2.8",
     "parcel": "^1.12.4",
     "ts-node": "5.0.1",

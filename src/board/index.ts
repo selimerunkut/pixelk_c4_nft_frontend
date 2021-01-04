@@ -68,23 +68,15 @@ export class Board extends BoardBase {
     let currentY = 0
     const doAnimation = async () => {
       clearCanvas(this)
-      
-      for (let y = 0; y < BoardBase.ROWS; y++) {
-        for (let x = 0; x < BoardBase.COLUMNS; x++) {
-          drawCircle(this.context, {
-            "x":3 * BoardBase.PIECE_RADIUS * x + BoardBase.MASK_X_BEGIN + 2 * BoardBase.PIECE_RADIUS,
-            "y":3 * BoardBase.PIECE_RADIUS * y + BoardBase.MASK_Y_BEGIN + 2 * BoardBase.PIECE_RADIUS,
-            "r": BoardBase.PIECE_RADIUS,
-            "player": this.getPlayer(this.map[y][x]),
-          })
-          this.render()
-          currentY += BoardBase.PIECE_RADIUS
-     
+      drawCircle(this.context, {
+        "x":3 * BoardBase.PIECE_RADIUS * x + BoardBase.MASK_X_BEGIN + 2 * BoardBase.PIECE_RADIUS,
+        "y":3 * BoardBase.PIECE_RADIUS * y + BoardBase.MASK_Y_BEGIN + 2 * BoardBase.PIECE_RADIUS,
+        "r": BoardBase.PIECE_RADIUS,
+        "player": this.getPlayer(this.map[y][x]),
+      })
+      this.render()
+      currentY += BoardBase.PIECE_RADIUS
     }
-    }
-    }
-
-
     while (newRow * 3 * BoardBase.PIECE_RADIUS >= currentY) {
       await animationFrame()
       doAnimation()
@@ -99,7 +91,7 @@ export class Board extends BoardBase {
           "x":3 * BoardBase.PIECE_RADIUS * x + BoardBase.MASK_X_BEGIN + 2 * BoardBase.PIECE_RADIUS,
           "y":3 * BoardBase.PIECE_RADIUS * y + BoardBase.MASK_Y_BEGIN + 2 * BoardBase.PIECE_RADIUS,
           "r": BoardBase.PIECE_RADIUS,
-          //"player": this.getPlayer(this.map[y][x]),
+          "player": this.getPlayer(this.map[y][x]),
         })
       }
     }

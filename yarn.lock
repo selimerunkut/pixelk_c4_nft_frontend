@@ -852,7 +852,7 @@
   resolved "https://registry.yarnpkg.com/@iarna/toml/-/toml-2.2.5.tgz#b32366c89b43c6f8cefbdefac778b9c828e3ba8c"
   integrity sha512-trnsAYxU3xnS1gPHPyU961coFyLkh4gAD/0zQ5mymY4yOZ+CYvsPqUbOFSw0aDM4y0tV7tiFxL/1XfXPNC6IPg==
 
-"@kenrick95/c4@4.0.0":
+"@kenrick95/c4@^4.0.0":
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/@kenrick95/c4/-/c4-4.0.0.tgz#ea89308506778b6899c35152bcdbf47214cc46a7"
   integrity sha512-dy6qdJToNPAiHGyyFExFuSqU0VlJnUtZ2QfmMW3013MY1eqY7r1hryegMbnN/qmEeTpzPAxFayv//hHRO/rlcA==
