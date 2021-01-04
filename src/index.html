@@ -6,18 +6,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
   </head>
 
-  <body>
+  <body style="background-color: #f7f7f7;">
     <header class="header">
       <h1>c4 - Connect Four</h1>
     </header>
+    <img id="imgBoard" src="./board/board.png" style="display: none;">
     <img id="imgP1" width="49.2" height="73.2">
     <img id="imgP2" width="49.2" height="73.2">
-    <button id="btnP1">Player 1 Image</button>
+    <div id="divBtnP1" style="background-color: #5adb57; width: 20%; height: 30%;">
+      <button id="btnP1" style="background-color: #01b801; padding-top: 1px; padding-bottom: 1px; padding-left: 1px; padding-right: 1px; width: 80%;">Player 1 Image</button>
+    </div>
     <input type="file" id="inputP1" width="48" height="48" style="display: none;">
     <br>
-    <button id="btnP2">Player 2 Image</button>
+    <div id="divBtnP2" style="background-color: #5adb57; width: 20%; height: 30%;">
+      <button id="btnP2" style="background-color: #01b801; padding-top: 1px; padding-bottom: 1px; padding-left: 1px; padding-right: 1px; width: 80%;">Player 2 Image</button>
+    </div>
     <input type="file" id="inputP2" width="48" height="48" style="display: none;">
-    
     <section class="section">
       <div class="section-message"></div>
       <canvas id="canvasBoard" class="section-canvas"></canvas>
@@ -52,14 +56,6 @@
             value="offline-human"
           />
           Offline: Human player vs human player</label
-        ><br /><label
-          ><input
-            class="mode-chooser-input"
-            type="radio"
-            name="mode"
-            value="online-human"
-          />
-          Online: Human player vs human player</label
         ><br />
         <button class="mode-chooser-submit">Start game</button>
       </div>
