@@ -27,6 +27,7 @@ export class Board extends BoardBase {
   }
 
   getBoardScale() {
+    console.log(window.innerWidth);
     return window.innerWidth < 700
       ? (BoardBase.SCALE = 0.5)
       : (BoardBase.SCALE = 1.3)
