@@ -1,3 +1,4 @@
+import { BoardBase } from '../core/src/board'
 import { Board } from './index'
 
 export function drawCircle(
@@ -42,10 +43,12 @@ export function drawMask(board: Board) {
   const tripleRadius = 3 * Board.PIECE_RADIUS
   
   context.fill()
-  context.drawImage(img, 0, 0, board.canvas.width, board.canvas.height);
+  //context.drawImage(img, 0, 0, board.canvas.width, board.canvas.height);
+  context.drawImage(img, 0, 0, BoardBase.CANVAS_WIDTH, BoardBase.CANVAS_HEIGHT);
   context.restore()
 }
 
 export function clearCanvas(board: Board) {
-  board.context.clearRect(0, 0, board.canvas.width, board.canvas.height)
+  //board.context.clearRect(0, 0, board.canvas.width, board.canvas.height)
+  board.context.clearRect(0, 0, BoardBase.CANVAS_WIDTH, BoardBase.CANVAS_HEIGHT);
 }

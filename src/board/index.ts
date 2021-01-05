@@ -27,10 +27,10 @@ export class Board extends BoardBase {
   }
 
   getBoardScale() {
-    console.log(window.innerWidth);
-    return window.innerWidth < 1000
+    return (BoardBase.SCALE = 0.8)
+    /*return window.innerWidth < 1000
       ? (BoardBase.SCALE = 0.5)
-      : (BoardBase.SCALE = 1.3)
+      : (BoardBase.SCALE = 1.3)*/
   }
 
   onresize() {
