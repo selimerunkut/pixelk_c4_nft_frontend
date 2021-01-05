@@ -27,10 +27,7 @@ export class Board extends BoardBase {
   }
 
   getBoardScale() {
-    return (BoardBase.SCALE = 0.8)
-    /*return window.innerWidth < 1000
-      ? (BoardBase.SCALE = 0.5)
-      : (BoardBase.SCALE = 1.3)*/
+    return (BoardBase.SCALE = (window.innerWidth / 720));
   }
 
   onresize() {

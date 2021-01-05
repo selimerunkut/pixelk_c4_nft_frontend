@@ -13,15 +13,17 @@
     <img id="imgBoard" src="./board/board.png" style="display: none;">
     <img id="imgP1" width="49.2" height="73.2">
     <img id="imgP2" width="49.2" height="73.2">
-    <div id="divBtnP1" style="background-color: #5adb57; width: 20%; height: 30%;">
-      <button id="btnP1" style="background-color: #01b801; padding-top: 1px; padding-bottom: 1px; padding-left: 1px; padding-right: 1px; width: 80%;">Player 1 Image</button>
+    <div style="border: solid; border-radius: 2px; border-color: gray; width: 70%;">
+      <input type="file" id="inputP1" height="48" style="width: 100%; padding-top: 1%; padding-left: 1%; padding-bottom: 1%;">
     </div>
-    <input type="file" id="inputP1" width="48" height="48" style="display: none;">
+    <button id="btnP1" style="position: absolute; left: 1%; background-color: #5adb57; border-radius: 5px;">Player 1 Image</button>
     <br>
-    <div id="divBtnP2" style="background-color: #5adb57; width: 20%; height: 30%;">
-      <button id="btnP2" style="background-color: #01b801; padding-top: 1px; padding-bottom: 1px; padding-left: 1px; padding-right: 1px; width: 80%;">Player 2 Image</button>
+    <br>
+    <br>
+    <div style="border: solid; border-radius: 2px; border-color: gray; width: 70%;">
+      <input type="file" id="inputP2" height="48" style="width: 100%; padding-top: 1%; padding-left: 1%; padding-bottom: 1%;">
     </div>
-    <input type="file" id="inputP2" width="48" height="48" style="display: none;">
+    <button id="btnP2" style="position: absolute; left: 1%; background-color: #5adb57; border-radius: 5px;">Player 2 Image</button>
     <section class="section">
       <div class="section-message"></div>
       <canvas id="canvasBoard" class="section-canvas"></canvas>
