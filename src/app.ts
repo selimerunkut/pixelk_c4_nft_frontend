@@ -7,8 +7,8 @@ import './style.css'
 document.getElementById('btnP1').addEventListener('click', () => {document.getElementById('inputP1').click();})
 document.getElementById('btnP2').addEventListener('click', () => {document.getElementById('inputP2').click();})
 
-document.addEventListener('DOMContentLoaded', () => {
-  const canvas = document.querySelector('canvas')
+document.addEventListener('DOMContentLoaded', () => {  
+  const canvas = document.getElementById('canvasBoard');
   if (!canvas) {
     console.error('Canvas DOM is null')
     return

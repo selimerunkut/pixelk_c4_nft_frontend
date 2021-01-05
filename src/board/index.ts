@@ -1,6 +1,6 @@
-import { BoardBase, BoardPiece } from '@kenrick95/c4/src/board'
-import { Player } from '@kenrick95/c4/src/player'
-import { onresize, animationFrame } from '@kenrick95/c4/src/utils'
+import { BoardBase, BoardPiece } from '../core/src/board'
+import { Player } from '../core/src/player'
+import { onresize, animationFrame } from '../core/src/utils'
 import { drawMask, drawCircle, clearCanvas } from './utils'
 
 var originalWidth = 2970;
@@ -9,6 +9,8 @@ var huecoAhueco = 330;
 var huecoAhuecoAbajo = 225;
 var originalDown = 660;
 var y = 0;
+
+
 
 export class Board extends BoardBase {
   canvas: HTMLCanvasElement
@@ -100,7 +102,6 @@ export class Board extends BoardBase {
     }
     y = 0;
   }
-
   render() {
     for (let y = 0; y < BoardBase.ROWS; y++) {
       for (let x = 0; x < BoardBase.COLUMNS; x++) {

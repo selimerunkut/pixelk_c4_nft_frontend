@@ -1,14 +1,17 @@
 import { Board } from '../board'
-import { BoardBase, BoardPiece } from '@kenrick95/c4/src/board'
+//import { BoardBase, BoardPiece } from '@kenrick95/c4/src/board'
+import { BoardBase, BoardPiece } from '../core/src/board'
 import {
   GameBase,
   MESSAGE_TYPE,
   constructMessage,
   parseMessage,
   GameOnlineMessage,
-} from '@kenrick95/c4/src/game'
-import { Player, PlayerHuman, PlayerShadow } from '@kenrick95/c4/src/player'
-import { showMessage, getColumnFromCoord } from '@kenrick95/c4/src/utils'
+} from '../core/src/game'//from '@kenrick95/c4/src/game'
+//import { Player, PlayerHuman, PlayerShadow } from '@kenrick95/c4/src/player'
+import { Player, PlayerHuman, PlayerShadow } from '../core/src/player'
+//import { showMessage, getColumnFromCoord } from '@kenrick95/c4/src/utils'
+import { showMessage, getColumnFromCoord } from '../core/src/utils'
 
 enum GAME_MODE {
   FIRST = BoardPiece.PLAYER_1,
@@ -26,8 +29,10 @@ const C4_SERVER_ENDPOINT =
   process.env.NODE_ENV === 'production'
     ? process.env.C4_SERVER_ENDPOINT
       ? process.env.C4_SERVER_ENDPOINT
-      : `wss://connect4-backend.herokuapp.com///`
+      : `wss://pixelk-connect4.herokuapp.com/`
     : `ws://${location.hostname}:8080`
+
+const game;
 
 export class GameOnline2p extends GameBase {
   connectionPlayerId: null | string = null
@@ -192,14 +197,31 @@ export class GameOnline2p extends GameBase {
           if (statusboxBodyGame) {
             statusboxBodyGame.textContent = 'Wating for move'
           }
+          if (
+            (document.getElementById('imgP1').src == undefined) || (document.getElementById('imgP1').src == '') || 
+            (document.getElementById('imgP2').src == undefined) || (document.getElementById('imgP2').src == '')
+          )
+          {
+            statusboxBodyGame.textContent = 'Waiting for image';
+          }
 
           if (statusboxBodyPlayer) {
             statusboxBodyPlayer.textContent =
-              (this.currentPlayerId === 0 ? `Player 1 🔴` : `Player 2 🔵`) +
+              (this.currentPlayerId === 0 ? `Player 1` : `Player 2`) +
               ` ` +
               (this.isCurrentMoveByCurrentPlayer()
                 ? `(you)`
                 : `(the other player)`)
+          }
+          document.getElementById('inputP' + (this.currentPlayerId + 1)).addEventListener('change', () => {
+            inputImage(game, this.currentPlayerId + 1);
+          })
+          if (
+            (document.getElementById('imgP1').src == undefined) || (document.getElementById('imgP1').src == '') || 
+            (document.getElementById('imgP2').src == undefined) || (document.getElementById('imgP2').src == '')
+          )
+          {
+            statusboxBodyPlayer.textContent = ``;
           }
           this.start()
         }
@@ -217,7 +239,7 @@ export class GameOnline2p extends GameBase {
             winnerBoardPiece === BoardPiece.DRAW
               ? `It's a draw`
               : `Player ${
-                  winnerBoardPiece === BoardPiece.PLAYER_1 ? '1 🔴' : '2 🔵'
+                  winnerBoardPiece === BoardPiece.PLAYER_1 ? '1' : '2'
                 } wins`
 
           showMessage(
@@ -260,7 +282,7 @@ export class GameOnline2p extends GameBase {
   beforeMoveApplied = () => {
     if (statusboxBodyGame) {
       statusboxBodyGame.textContent = `Dropping ${
-        this.currentPlayerId === 0 ? '🔴' : '🔵'
+        this.currentPlayerId === 0 ? '1' : '2'
       } disc`
     }
   }
@@ -269,12 +291,26 @@ export class GameOnline2p extends GameBase {
     if (statusboxBodyGame) {
       statusboxBodyGame.textContent = 'Wating for move'
     }
+    if (
+      (document.getElementById('imgP1').src == undefined) || (document.getElementById('imgP1').src == '') || 
+      (document.getElementById('imgP2').src == undefined) || (document.getElementById('imgP2').src == '')
+    )
+    {
+      statusboxBodyGame.textContent = 'Waiting for image';
+    }
 
     if (statusboxBodyPlayer) {
       statusboxBodyPlayer.textContent =
-        (this.currentPlayerId === 0 ? `Player 1 🔴` : `Player 2 🔵`) +
+        (this.currentPlayerId === 0 ? `Player 1` : `Player 2`) +
         ` ` +
         (this.isCurrentMoveByCurrentPlayer() ? `(you)` : `(the other player)`)
+    }
+    if (
+      (document.getElementById('imgP1').src == undefined) || (document.getElementById('imgP1').src == '') || 
+      (document.getElementById('imgP2').src == undefined) || (document.getElementById('imgP2').src == '')
+    )
+    {
+      statusboxBodyPlayer.textContent = ``;
     }
   }
 
@@ -296,8 +332,28 @@ export class GameOnline2p extends GameBase {
   }
 }
 
+function inputImage(game, player)
+{
+  var supportedImages = ["image/jpeg", "image/png", "image/gif", "image/jpg", "image/ico"];
+  if (supportedImages.indexOf(document.getElementById('inputP' + player).files[0].type) != -1)
+  {
+    document.getElementById('imgP' + player).src = window.URL.createObjectURL(document.getElementById('inputP' + player).files[0]);
+    if (
+      (document.getElementById('imgP1').src != undefined) && (document.getElementById('imgP1').src != '') &&
+      (document.getElementById('imgP2').src != undefined) && (document.getElementById('imgP2').src != '')
+    )
+    {
+      var statusboxBodyGame = document.querySelector('.statusbox-body-game');
+        statusboxBodyGame.textContent = 'Waiting for move';
+        
+        var statusboxBodyPlayer = document.querySelector('.statusbox-body-player')
+        statusboxBodyPlayer.textContent = 'Player ' + (game.currentPlayerId + 1);
+    }
+  }
+}
+
 export function initGameOnline2p() {
-  const canvas = document.querySelector('canvas')
+  const canvas = document.getElementById('canvasBoard');
   if (!canvas) {
     console.error('Canvas DOM is null')
     return
@@ -319,18 +375,24 @@ export function initGameOnline2p() {
           new PlayerHuman(BoardPiece.PLAYER_2),
         ]
 
-  const game = new GameOnline2p(players, board, {
+  game = new GameOnline2p(players, board, {
     gameMode,
   })
   statusbox?.classList.remove('hidden')
 
   canvas.addEventListener('click', async (event: MouseEvent) => {
-    if (!game.isGameWon) {
-      const rect = canvas.getBoundingClientRect()
-      const x = event.clientX - rect.left
-      const y = event.clientY - rect.top
-      const column = getColumnFromCoord({ x: x, y: y })
-      game.playerMain.doAction(column)
+    if (
+      (document.getElementById('imgP1').src != undefined) && (document.getElementById('imgP1').src != '') &&
+      (document.getElementById('imgP2').src != undefined) && (document.getElementById('imgP2').src != '')
+    )
+    {
+      if (!game.isGameWon) {
+        const rect = canvas.getBoundingClientRect()
+        const x = event.clientX - rect.left
+        const y = event.clientY - rect.top
+        const column = getColumnFromCoord({ x: x, y: y })
+        game.playerMain.doAction(column)
+      }
     }
   })
 }

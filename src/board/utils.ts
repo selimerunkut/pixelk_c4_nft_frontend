@@ -36,7 +36,7 @@ export function drawMask(board: Board) {
   var img = document.getElementById('imgBoard');
   const context = board.context
   context.save()
-  context.fillStyle = Board.MASK_COLOR
+  //context.fillStyle = Board.MASK_COLOR
   context.beginPath()
   const doubleRadius = 2 * Board.PIECE_RADIUS
   const tripleRadius = 3 * Board.PIECE_RADIUS
