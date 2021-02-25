@@ -1,84 +1,72 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8" />
-    <title>c4</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-  </head>
 
-  <body style="background-color: #f7f7f7;">
-    <header class="header">
+<head>
+  <meta charset="utf-8" />
+  <title>c4</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+</head>
+
+<body style="background-color: #f7f7f7;">
+  <header class="header">
+    <h1>c4 - Connect Four</h1>
+  </header>
+  <img id="imgBoard" src="./board/board.png" style="display: none;">
+  <img id="imgP1" width="49.2" height="73.2">
+  <img id="imgP2" width="49.2" height="73.2">
+  <div style="border: solid; border-radius: 2px; border-color: gray; width: 70%;">
+    <input type="file" id="inputP1" height="48"
+      style="width: 100%; padding-top: 1%; padding-left: 1%; padding-bottom: 1%;">
+  </div>
+  <button id="btnP1" style="position: absolute; left: 1%; background-color: #5adb57; border-radius: 5px;">Player 1
+    Image</button>
+  <br>
+  <br>
+  <br>
+  <div style="border: solid; border-radius: 2px; border-color: gray; width: 70%;">
+    <input type="file" id="inputP2" height="48"
+      style="width: 100%; padding-top: 1%; padding-left: 1%; padding-bottom: 1%;">
+  </div>
+  <button id="btnP2" style="position: absolute; left: 1%; background-color: #5adb57; border-radius: 5px;">Player 2
+    Image</button>
+  <section class="section">
+    <div class="section-message"></div>
+    <canvas id="canvasBoard" class="section-canvas"></canvas>
+  </section>
+
+  <div class="mode">
+    <div class="mode-chooser">
       <h1>c4 - Connect Four</h1>
-    </header>
-    <img id="imgBoard" src="./board/board.png" style="display: none;">
-    <img id="imgP1" width="49.2" height="73.2">
-    <img id="imgP2" width="49.2" height="73.2">
-    <div style="border: solid; border-radius: 2px; border-color: gray; width: 70%;">
-      <input type="file" id="inputP1" height="48" style="width: 100%; padding-top: 1%; padding-left: 1%; padding-bottom: 1%;">
+      <p>
+        Welcome to connect four game!<br />Please refer to
+        <a href="https://en.wikipedia.org/wiki/Connect_Four" target="_blank">Wikipedia article on Connect Four</a>
+        for how to play.
+      </p>
+      <h2>Mode chooser</h2>
+      <label><input class="mode-chooser-input" type="radio" name="mode" value="offline-ai" checked />
+        Offline: Human player vs AI player</label><br />
+      <label><input class="mode-chooser-input" type="radio" name="mode" value="offline-human" />
+        Offline: Human player vs human player</label><br />
+      <button class="mode-chooser-submit">Start game</button>
     </div>
-    <button id="btnP1" style="position: absolute; left: 1%; background-color: #5adb57; border-radius: 5px;">Player 1 Image</button>
-    <br>
-    <br>
-    <br>
-    <div style="border: solid; border-radius: 2px; border-color: gray; width: 70%;">
-      <input type="file" id="inputP2" height="48" style="width: 100%; padding-top: 1%; padding-left: 1%; padding-bottom: 1%;">
+  </div>
+  <div class="statusbox hidden">
+    <div class="statusbox-body">
+      <div class="statusbox-body-connection">...</div>
+      <div class="statusbox-body-game">...</div>
+      <div class="statusbox-body-player">...</div>
     </div>
-    <button id="btnP2" style="position: absolute; left: 1%; background-color: #5adb57; border-radius: 5px;">Player 2 Image</button>
-    <section class="section">
-      <div class="section-message"></div>
-      <canvas id="canvasBoard" class="section-canvas"></canvas>
-    </section>
+  </div>
+  <div class="message hidden">
+    <div class="message-body">
+      <div class="message-body-content"></div>
+      <button class="message-body-dismiss">OK</button>
+    </div>
+  </div>
+  <footer class="footer">
+    A Game by pixelk &trade;
+  </footer>
+  <script src="./app.ts"></script>
+</body>
 
-    <div class="mode">
-      <div class="mode-chooser">
-        <h1>c4 - Connect Four</h1>
-        <p>
-          Welcome to connect four game!<br />Please refer to
-          <a href="https://en.wikipedia.org/wiki/Connect_Four" target="_blank"
-            >Wikipedia article on Connect Four</a
-          >
-          for how to play.
-        </p>
-        <h2>Mode chooser</h2>
-        <label
-          ><input
-            class="mode-chooser-input"
-            type="radio"
-            name="mode"
-            value="offline-ai"
-            checked
-          />
-          Offline: Human player vs AI player</label
-        ><br />
-        <label
-          ><input
-            class="mode-chooser-input"
-            type="radio"
-            name="mode"
-            value="offline-human"
-          />
-          Offline: Human player vs human player</label
-        ><br />
-        <button class="mode-chooser-submit">Start game</button>
-      </div>
-    </div>
-    <div class="statusbox hidden">
-      <div class="statusbox-body">
-        <div class="statusbox-body-connection">...</div>
-        <div class="statusbox-body-game">...</div>
-        <div class="statusbox-body-player">...</div>
-      </div>
-    </div>
-    <div class="message hidden">
-      <div class="message-body">
-        <div class="message-body-content"></div>
-        <button class="message-body-dismiss">OK</button>
-      </div>
-    </div>
-    <footer class="footer">
-      By <a href="http://kenrick95.org">Kenrick95</a>. Fork this project at
-      <a href="https://github.com/kenrick95/c4">GitHub</a>.
-    </footer>
-    <script src="./app.ts"></script>
-  </body>
 </html>
