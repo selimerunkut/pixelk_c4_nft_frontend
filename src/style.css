@@ -75,7 +75,7 @@ h2 {
   transition: opacity 0.2s ease-in;
   box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
 }
-.message-body {
+.mode-chooser, .message-body {
   flex: 0 1 auto;
   text-align: left;
   background: white;
