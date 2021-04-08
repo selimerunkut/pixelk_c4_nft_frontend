@@ -14,8 +14,8 @@ export enum BoardPiece {
   DRAW,
 }
 export class BoardBase {
-  static readonly ROWS: number = 6
-  static readonly COLUMNS: number = 7
+  static readonly ROWS: number = 4
+  static readonly COLUMNS: number = 6
   static CANVAS_HEIGHT: number
   static CANVAS_WIDTH: number
   static PIECE_RADIUS: number
@@ -25,6 +25,9 @@ export class BoardBase {
   static MESSAGE_X_BEGIN: number
   static MESSAGE_Y_BEGIN: number
   static SCALE: number
+  static COLUMN_WIDTH: number
+  static COLUMN_X_RANGE: number
+  static COLUMN_Y_RANGE: number
 
   map: Array<Array<number>>
   protected winnerBoardPiece: BoardPiece
@@ -51,12 +54,23 @@ export class BoardBase {
     BoardBase.CANVAS_WIDTH = BoardBase.SCALE * 700;
     BoardBase.CANVAS_HEIGHT = BoardBase.CANVAS_WIDTH * (originalHeight / originalWidth);
     BoardBase.PIECE_RADIUS = BoardBase.CANVAS_WIDTH * (hueco / originalWidth) * 0.5;
-    BoardBase.MASK_X_BEGIN = (BoardBase.CANVAS_WIDTH * (originalLeft / originalWidth)) - (BoardBase.PIECE_RADIUS * 1);//0.8
-    BoardBase.MASK_Y_BEGIN = (BoardBase.CANVAS_HEIGHT * (originalUp / originalHeight)) - (BoardBase.PIECE_RADIUS * 2);//1.73 -> sobra
+    // BoardBase.MASK_X_BEGIN = (BoardBase.CANVAS_WIDTH * (originalLeft / originalWidth)) - (BoardBase.PIECE_RADIUS * 1);//0.8
+    // BoardBase.MASK_Y_BEGIN = (BoardBase.CANVAS_HEIGHT * (originalUp / originalHeight)) - (BoardBase.PIECE_RADIUS * 2);//1.73 -> sobra
     BoardBase.MESSAGE_WIDTH = BoardBase.SCALE * 400
     BoardBase.MESSAGE_X_BEGIN =
       (BoardBase.CANVAS_WIDTH - BoardBase.MESSAGE_WIDTH) / 2
     BoardBase.MESSAGE_Y_BEGIN = BoardBase.SCALE * 20
+
+    const context = (document.querySelector('#canvasBoard') as HTMLElement);
+    const contextWidth = context.clientWidth;
+    const contextHeight = context.clientHeight;
+    BoardBase.MASK_X_BEGIN = contextWidth / 100 * 14;;
+    // column width
+    BoardBase.COLUMN_WIDTH = contextWidth / 100 * 7.2;
+    // length between each column
+    BoardBase.COLUMN_X_RANGE = contextWidth / 100 * 7.38;
+    BoardBase.MASK_Y_BEGIN = contextWidth / 100 * 10;
+    BoardBase.COLUMN_Y_RANGE = contextWidth / 100 * 7.2;
   }
 
   /**

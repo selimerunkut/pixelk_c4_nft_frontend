@@ -43,11 +43,10 @@ export function isCoordOnColumn(
   coord: { x: number; y: number },
   columnXBegin: number
 ): boolean {
-  var originalWidth = 2970;
-  var huecoAhueco = 330;
-  var x2 = BoardBase.MASK_X_BEGIN + (BoardBase.PIECE_RADIUS * 2) + ((BoardBase.CANVAS_WIDTH * (huecoAhueco / originalWidth)) * columnXBegin);
-  if ((coord['x'] >= (x2 - (BoardBase.PIECE_RADIUS * 1.25))) && 
-    (coord['x'] <= (x2 + (BoardBase.PIECE_RADIUS * 1.5))))
+  let x2 = BoardBase.MASK_X_BEGIN + (BoardBase.COLUMN_WIDTH + BoardBase.COLUMN_X_RANGE) * columnXBegin;
+  let offset = columnXBegin > 2 ? 10 : 5;
+  if ((coord['x'] >= x2 - offset) && 
+    (coord['x'] <= (x2 + BoardBase.COLUMN_WIDTH + offset)))
   {
     return true;
   }

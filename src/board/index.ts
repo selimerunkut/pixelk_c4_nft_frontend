@@ -3,11 +3,6 @@ import { Player } from '../core/src/player'
 import { onresize, animationFrame } from '../core/src/utils'
 import { drawMask, drawCircle, clearCanvas } from './utils'
 
-var originalWidth = 2970;
-var originalHeight = 2370;
-var huecoAhueco = 330;
-var huecoAhuecoAbajo = 225;
-var originalDown = 660;
 var y = 0;
 
 
@@ -59,11 +54,15 @@ export class Board extends BoardBase {
        * https://www.html5rocks.com/en/tutorials/canvas/hidpi/
        */
       const dpr = self.devicePixelRatio || 1
-      this.canvas.width = Board.CANVAS_WIDTH * dpr
-      this.canvas.height = Board.CANVAS_HEIGHT * dpr
+
+      let width = (document.querySelector('.section') as HTMLElement).clientWidth;
+      let height = width * 79 / 100;
+
+      this.canvas.width = width * dpr
+      this.canvas.height = height * dpr
       this.context.scale(dpr, dpr)
-      this.canvas.style.width = Board.CANVAS_WIDTH + 'px'
-      this.canvas.style.height = Board.CANVAS_HEIGHT + 'px'
+      this.canvas.style.width = `${width}px`
+      this.canvas.style.height = `${height}px`
     }
   }
   private async animateAction(
@@ -75,25 +74,21 @@ export class Board extends BoardBase {
     let currentY = 0;
     const doAnimation = async () => {
       clearCanvas(this)
-      var x = BoardBase.MASK_X_BEGIN + (BoardBase.PIECE_RADIUS * 2) + ((BoardBase.CANVAS_WIDTH * (huecoAhueco / originalWidth)) * column);
-      y = BoardBase.MASK_Y_BEGIN + (BoardBase.PIECE_RADIUS * 2) + ((BoardBase.CANVAS_HEIGHT * (huecoAhuecoAbajo / originalHeight)) + currentY);
+      let x = BoardBase.MASK_X_BEGIN + (BoardBase.COLUMN_WIDTH + BoardBase.COLUMN_X_RANGE) * column;
+      y = BoardBase.MASK_Y_BEGIN + currentY;
+
+      this.render()
       drawCircle(this.context, {
         "x" : x, 
         "y" : y, 
         "r": BoardBase.PIECE_RADIUS,
         "player": player,
       })
-      this.render()
       currentY += BoardBase.PIECE_RADIUS
     }
-    
-    var y2 = BoardBase.MASK_Y_BEGIN + (BoardBase.PIECE_RADIUS * 2) + ((BoardBase.CANVAS_HEIGHT * ((huecoAhuecoAbajo * 0.92) / originalHeight)) * newRow);
-    while ((y + (BoardBase.PIECE_RADIUS * 2)) < y2)
-    {
-      await animationFrame()
-      doAnimation()
-    }
-    if ((y + (BoardBase.PIECE_RADIUS * 2)) >= y2)
+
+    let y2 = BoardBase.MASK_Y_BEGIN + ((BoardBase.COLUMN_WIDTH + BoardBase.COLUMN_Y_RANGE) * newRow) - 50;
+    while (y < y2)
     {
       await animationFrame()
       doAnimation()
@@ -101,10 +96,11 @@ export class Board extends BoardBase {
     y = 0;
   }
   render() {
+    drawMask(this)
     for (let y = 0; y < BoardBase.ROWS; y++) {
       for (let x = 0; x < BoardBase.COLUMNS; x++) {
-        var x2 = BoardBase.MASK_X_BEGIN + (BoardBase.PIECE_RADIUS * 2) + ((BoardBase.CANVAS_WIDTH * (huecoAhueco / originalWidth)) * x);
-        var y2 = BoardBase.MASK_Y_BEGIN + (BoardBase.PIECE_RADIUS * 2) + ((BoardBase.CANVAS_HEIGHT * ((huecoAhuecoAbajo * 0.92) / originalHeight)) * y);
+        let x2 = BoardBase.MASK_X_BEGIN + ((BoardBase.COLUMN_WIDTH + BoardBase.COLUMN_X_RANGE) * x);
+        let y2 = BoardBase.MASK_Y_BEGIN + ((BoardBase.COLUMN_WIDTH + BoardBase.COLUMN_Y_RANGE) * y);
         drawCircle(this.context, {
           "x": x2, 
           "y" : y2, 
@@ -113,7 +109,6 @@ export class Board extends BoardBase {
         })
       }
     }
-    drawMask(this)
   }
 
   async applyPlayerAction(player: Player, column: number): Promise<boolean> {

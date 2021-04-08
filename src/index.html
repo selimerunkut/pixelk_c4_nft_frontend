@@ -5,34 +5,61 @@
   <meta charset="utf-8" />
   <title>c4</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <link href='https://fonts.googleapis.com/css?family=Comfortaa' rel='stylesheet'>
+  <link href='https://fonts.googleapis.com/css?family=Righteous' rel='stylesheet'>
 </head>
 
-<body style="background-color: #f7f7f7;">
-  <header class="header">
-    <h1>c4 - Connect Four</h1>
-  </header>
+<body>
+
   <img id="imgBoard" src="./board/board.png" style="display: none;">
-  <img id="imgP1" width="49.2" height="73.2">
-  <img id="imgP2" width="49.2" height="73.2">
-  <div style="border: solid; border-radius: 2px; border-color: gray; width: 70%;">
-    <input type="file" id="inputP1" height="48"
-      style="width: 100%; padding-top: 1%; padding-left: 1%; padding-bottom: 1%;">
-  </div>
-  <button id="btnP1" style="position: absolute; left: 1%; background-color: #5adb57; border-radius: 5px;">Player 1
-    Image</button>
-  <br>
-  <br>
-  <br>
-  <div style="border: solid; border-radius: 2px; border-color: gray; width: 70%;">
-    <input type="file" id="inputP2" height="48"
-      style="width: 100%; padding-top: 1%; padding-left: 1%; padding-bottom: 1%;">
-  </div>
-  <button id="btnP2" style="position: absolute; left: 1%; background-color: #5adb57; border-radius: 5px;">Player 2
-    Image</button>
-  <section class="section">
-    <div class="section-message"></div>
-    <canvas id="canvasBoard" class="section-canvas"></canvas>
-  </section>
+  
+
+  <div class="container">
+    <!-- Start Player 1 -->
+    <div class="player">
+      <label for="inputP1">
+        <span class="plus">+</span>
+        <span>Add Image</span>
+      </label>
+      <input type="file" id="inputP1" height="48" />
+      <img id="imgP1" />
+      <div class="player-name">
+        Bob
+      </div>
+    </div><!-- End Player 1 -->
+
+    <!-- Start main -->
+    <div class="main">
+      <!-- Start score -->
+      <div class="score">
+        <span class="score-1">0</span>
+        <span class="vs">v/s</span>
+        <span class="score-2">0</span>
+      </div><!-- End score -->
+
+      <!-- Start canvas palyground -->
+      <section class="section">
+        <div class="section-message"></div>
+        <canvas id="canvasBoard" class="section-canvas"></canvas>
+      </section><!-- End canvas palyground -->
+    </div><!-- End main -->
+
+    <!-- Start Player 2 -->
+    <div class="player">
+      <label for="inputP2">
+        <span class="plus">+</span>
+        <span>Add Image</span>
+      </label>
+      <input type="file" id="inputP2" height="48" />
+      <img id="imgP2">
+      <div class="player-name">
+        Alice
+      </div>
+    </div><!-- End Player 2 -->
+  </div><!-- End container -->
+  
+  
 
   <div class="mode">
     <div class="mode-chooser">
@@ -56,6 +83,9 @@
       <div class="statusbox-body-game">...</div>
       <div class="statusbox-body-player">...</div>
     </div>
+    <footer class="footer">
+      A Game by pixelk &trade;
+    </footer>
   </div>
   <div class="message hidden">
     <div class="message-body">
@@ -63,9 +93,6 @@
       <button class="message-body-dismiss">OK</button>
     </div>
   </div>
-  <footer class="footer">
-    A Game by pixelk &trade;
-  </footer>
   <script src="./app.ts"></script>
 </body>
 
