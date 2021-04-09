@@ -1,3 +1,4 @@
+import { Context } from 'vm';
 import { BoardBase } from '../core/src/board'
 import { Board } from './index'
 
@@ -23,13 +24,13 @@ export function drawCircle(
   {
     var img = document.getElementById('imgP' + player);
     let radius = BoardBase.COLUMN_WIDTH / 100 * 60;
-    x += 5;
-    y -= 5;
+    let width = BoardBase.COLUMN_WIDTH + 3;
+
     context.save();
-    roundedImage(context, x, y, BoardBase.COLUMN_WIDTH, BoardBase.COLUMN_WIDTH, radius);
+    roundedImage(context, x, y, width, width, radius);
     context.clip();
 
-    context.drawImage(img, x, y, BoardBase.COLUMN_WIDTH, BoardBase.COLUMN_WIDTH);
+    context.drawImage(img, x, y, width, width);
 
   }
   context.restore();

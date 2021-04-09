@@ -30,7 +30,7 @@ body {
 
 body {
   background-color: #0E141F;
-  padding: 6.25vw 5vw 3.6vw;
+  padding: 6.25vw 5vw 0 3.6vw;
 }
 
 button {
@@ -115,12 +115,12 @@ h2 {
   display: flex;
   justify-content: space-between;
   color: #F9EEC4;
-  height: calc(100vh - 150px)
+  height: 50vw
 }
 
 .main {
   flex: 1 1 auto;
-  margin: 0 100px;
+  margin: 0 6.9vw;
 }
 
 .score {
@@ -142,7 +142,7 @@ h2 {
 .section {
   position: relative;
   width: 100%;
-  max-width: 855px;
+  max-width: calc(50vw - 70px);
 }
 
 .section-canvas {
@@ -197,10 +197,11 @@ h2 {
   text-align: center;
   color: #F3DD00;
   text-shadow: -5px 5px 0px #CB3E29;
-  margin-top: 40px;
+  margin-top: 2.7vw;
 }
 
 .statusbox {
+  font-size: 1.5vw;
   position: fixed;
   bottom: 0;
   left: 0;

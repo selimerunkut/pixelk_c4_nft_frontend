@@ -64,13 +64,13 @@ export class BoardBase {
     const context = (document.querySelector('#canvasBoard') as HTMLElement);
     const contextWidth = context.clientWidth;
     const contextHeight = context.clientHeight;
-    BoardBase.MASK_X_BEGIN = contextWidth / 100 * 14;;
+    BoardBase.MASK_X_BEGIN = contextWidth / 100 * 10.6;
     // column width
-    BoardBase.COLUMN_WIDTH = contextWidth / 100 * 7.2;
+    BoardBase.COLUMN_WIDTH = contextWidth / 100 * 8.415;
     // length between each column
-    BoardBase.COLUMN_X_RANGE = contextWidth / 100 * 7.38;
-    BoardBase.MASK_Y_BEGIN = contextWidth / 100 * 10;
-    BoardBase.COLUMN_Y_RANGE = contextWidth / 100 * 7.2;
+    BoardBase.COLUMN_X_RANGE = contextWidth / 100 * 7.0;
+    BoardBase.MASK_Y_BEGIN = contextWidth / 100 * 10.4;
+    BoardBase.COLUMN_Y_RANGE = contextWidth / 100 * 6.1;
   }
 
   /**

@@ -193,6 +193,8 @@ export function initGameLocal(
           secondPlayer.doAction(column)
         }
       }
+    } else {
+      alert('Please add image')
     }
   })
 }
