@@ -352,6 +352,39 @@ function inputImage(game, player)
   }
 }
 
+function setNFTImage(game, player) {
+  function getCookie(name) {
+    var nameEQ = name + "=";
+    var ca = document.cookie.split(';');
+    for (var i = 0; i < ca.length; i++) {
+      var c = ca[i];
+      while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+      if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+    }
+    return null;
+  }
+  var x = getCookie('Image');
+  const input = document.getElementById("inputP1") as HTMLElement;
+  input.setAttribute("src", x);
+  console.log("check image", x);
+  if (x) {
+    (document.querySelector(`label[for="inputP${player}"]`) as HTMLElement).style.display = 'none';
+    (document.querySelector(`#imgP${player}`) as HTMLElement).style.display = 'block';
+    document.getElementById('imgP' + player).src = x;//window.URL.createObjectURL(document.getElementById('inputP' + player).files[0]);
+    if (
+      (document.getElementById('imgP1').src != undefined) && (document.getElementById('imgP1').src != '') &&
+      (document.getElementById('imgP2').src != undefined) && (document.getElementById('imgP2').src != '')
+    ) {
+      var statusboxBodyGame = document.querySelector('.statusbox-body-game');
+      statusboxBodyGame.textContent = 'Waiting for move';
+
+      var statusboxBodyPlayer = document.querySelector('.statusbox-body-player')
+      statusboxBodyPlayer.textContent = 'Player ' + (game.currentPlayerId + 1);
+    }
+  }
+}
+
+
 export function initGameOnline2p() {
   const canvas = document.getElementById('canvasBoard');
   if (!canvas) {
@@ -395,4 +428,5 @@ export function initGameOnline2p() {
       }
     }
   })
+  setNFTImage(game, 1);
 }
