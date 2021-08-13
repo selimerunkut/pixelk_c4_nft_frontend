@@ -25,9 +25,8 @@ export class GameLocal extends GameBase {
   }
   beforeMoveApplied() {
     if (statusboxBodyGame) {
-      statusboxBodyGame.textContent = `Dropping ${
-        this.currentPlayerId === 0 ? 'Player 1' : 'Player 2'
-      } disc`
+      statusboxBodyGame.textContent = `Dropping ${this.currentPlayerId === 0 ? 'Player 1' : 'Player 2'
+        } disc`
     }
   }
   waitingForMove() {
@@ -38,10 +37,9 @@ export class GameLocal extends GameBase {
     if (statusboxBodyGame) {
       statusboxBodyGame.textContent = 'Waiting for move'
       if (
-        (document.getElementById('imgP1').src == undefined) || (document.getElementById('imgP1').src == '') || 
+        (document.getElementById('imgP1').src == undefined) || (document.getElementById('imgP1').src == '') ||
         (document.getElementById('imgP2').src == undefined) || (document.getElementById('imgP2').src == '')
-      )
-      {
+      ) {
         statusboxBodyGame.textContent = 'Waiting for image'
       }
     }
@@ -51,10 +49,9 @@ export class GameLocal extends GameBase {
       statusboxBodyPlayer.textContent =
         this.currentPlayerId === 0 ? `Player 1` : `Player 2`
       if (
-        (document.getElementById('imgP1').src == undefined) || (document.getElementById('imgP1').src == '') || 
+        (document.getElementById('imgP1').src == undefined) || (document.getElementById('imgP1').src == '') ||
         (document.getElementById('imgP2').src == undefined) || (document.getElementById('imgP2').src == '')
-      )
-      {
+      ) {
         statusboxBodyPlayer.textContent = ``;
       }
     }
@@ -74,15 +71,15 @@ export class GameLocal extends GameBase {
       message += `It's a draw`
     } else {
       message += `Player ${winnerBoardPiece} wins`
-      
-      if(winnerBoardPiece === 1) {
+
+      if (winnerBoardPiece === 1) {
         this.score.p1 += 1;
         (document.querySelector('.score-1') as HTMLElement).innerHTML = this.score.p1.toString();
       } else {
         this.score.p2 += 1;
         (document.querySelector('.score-2') as HTMLElement).innerHTML = this.score.p2.toString();
       }
-      
+
     }
     message +=
       '.<br />After dismissing this message, click the board to reset game.'
@@ -95,31 +92,59 @@ export class GameLocal extends GameBase {
       statusboxBodyPlayer.textContent =
         winnerBoardPiece === BoardPiece.DRAW
           ? `It's a draw`
-          : `Player ${
-              winnerBoardPiece === BoardPiece.PLAYER_1 ? '1' : '2'
-            } wins`
+          : `Player ${winnerBoardPiece === BoardPiece.PLAYER_1 ? '1' : '2'
+          } wins`
     }
   }
 }
 
-function inputImage(game, player)
-{
+function inputImage(game, player) {
   var supportedImages = ["image/jpeg", "image/png", "image/gif", "image/jpg", "image/ico"];
-  if (supportedImages.indexOf(document.getElementById('inputP' + player).files[0].type) != -1)
-  {
+  if (supportedImages.indexOf(document.getElementById('inputP' + player).files[0].type) != -1) {
     (document.querySelector(`label[for="inputP${player}"]`) as HTMLElement).style.display = 'none';
     (document.querySelector(`#imgP${player}`) as HTMLElement).style.display = 'block';
     document.getElementById('imgP' + player).src = window.URL.createObjectURL(document.getElementById('inputP' + player).files[0]);
     if (
       (document.getElementById('imgP1').src != undefined) && (document.getElementById('imgP1').src != '') &&
       (document.getElementById('imgP2').src != undefined) && (document.getElementById('imgP2').src != '')
-    )
-    {
+    ) {
       var statusboxBodyGame = document.querySelector('.statusbox-body-game');
-        statusboxBodyGame.textContent = 'Waiting for move';
-        
-        var statusboxBodyPlayer = document.querySelector('.statusbox-body-player')
-        statusboxBodyPlayer.textContent = 'Player ' + (game.currentPlayerId + 1);
+      statusboxBodyGame.textContent = 'Waiting for move';
+
+      var statusboxBodyPlayer = document.querySelector('.statusbox-body-player')
+      statusboxBodyPlayer.textContent = 'Player ' + (game.currentPlayerId + 1);
+    }
+  }
+}
+
+function setNFTImage(game, player) {
+  function getCookie(name) {
+    var nameEQ = name + "=";
+    var ca = document.cookie.split(';');
+    for (var i = 0; i < ca.length; i++) {
+      var c = ca[i];
+      while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+      if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+    }
+    return null;
+  }
+  var x = getCookie('Image');
+  const input = document.getElementById("inputP1") as HTMLElement;
+  input.setAttribute("src", x);
+  console.log("check image", x);
+  if (x) {
+    (document.querySelector(`label[for="inputP${player}"]`) as HTMLElement).style.display = 'none';
+    (document.querySelector(`#imgP${player}`) as HTMLElement).style.display = 'block';
+    document.getElementById('imgP' + player).src = x;//window.URL.createObjectURL(document.getElementById('inputP' + player).files[0]);
+    if (
+      (document.getElementById('imgP1').src != undefined) && (document.getElementById('imgP1').src != '') &&
+      (document.getElementById('imgP2').src != undefined) && (document.getElementById('imgP2').src != '')
+    ) {
+      var statusboxBodyGame = document.querySelector('.statusbox-body-game');
+      statusboxBodyGame.textContent = 'Waiting for move';
+
+      var statusboxBodyPlayer = document.querySelector('.statusbox-body-player')
+      statusboxBodyPlayer.textContent = 'Player ' + (game.currentPlayerId + 1);
     }
   }
 }
@@ -143,10 +168,9 @@ export function initGameLocal(
   if (statusboxBodyGame) {
     statusboxBodyGame.textContent = 'Waiting for move';
     if (
-      (document.getElementById('imgP1').src == undefined) || (document.getElementById('imgP1').src == '') || 
+      (document.getElementById('imgP1').src == undefined) || (document.getElementById('imgP1').src == '') ||
       (document.getElementById('imgP2').src == undefined) || (document.getElementById('imgP2').src == '')
-    )
-    {
+    ) {
       statusboxBodyGame.textContent = 'Waiting for image';
     }
   }
@@ -154,10 +178,9 @@ export function initGameLocal(
   if (statusboxBodyPlayer) {
     statusboxBodyPlayer.textContent = `Player 1`;
     if (
-      (document.getElementById('imgP1').src == undefined) || (document.getElementById('imgP1').src == '') || 
+      (document.getElementById('imgP1').src == undefined) || (document.getElementById('imgP1').src == '') ||
       (document.getElementById('imgP2').src == undefined) || (document.getElementById('imgP2').src == '')
-    )
-    {
+    ) {
       statusboxBodyPlayer.textContent = ``;
     }
   }
@@ -169,12 +192,13 @@ export function initGameLocal(
     inputImage(game, 2);
   })
 
+  setNFTImage(game, 1);
+
   canvas.addEventListener('click', async (event: MouseEvent) => {
     if (
       (document.getElementById('imgP1').src != undefined) && (document.getElementById('imgP1').src != '') &&
       (document.getElementById('imgP2').src != undefined) && (document.getElementById('imgP2').src != '')
-    )
-    {
+    ) {
       if (game.isGameWon) {
         game.reset()
         await animationFrame()
