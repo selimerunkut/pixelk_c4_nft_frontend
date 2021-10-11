@@ -140,6 +140,10 @@ function setNFTImage(game) {
     (document.querySelector(`label[for="inputP2"]`) as HTMLElement).style.display = 'none';
     (document.querySelector(`#imgP2`) as HTMLElement).style.display = 'block';
     document.getElementById('imgP2').src = x2;
+
+    (document.querySelector(`label[for="inputP1"]`) as HTMLElement).style.display = 'none';
+    (document.querySelector(`#imgP1`) as HTMLElement).style.display = 'block';
+    document.getElementById('imgP1').src = x1;
     if (
       (document.getElementById('imgP1').src != undefined) && (document.getElementById('imgP1').src != '') &&
       (document.getElementById('imgP2').src != undefined) && (document.getElementById('imgP2').src != '')
